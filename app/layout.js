@@ -2,7 +2,6 @@ import { Poppins, Inter } from "next/font/google";
 import Header from "../components/common/Header";
 import Footer from "../components/common/Footer";
 import "./globals.css";
-import { motion } from "framer-motion/dist/framer-motion";
 
 // Configure Poppins for headings
 const poppins = Poppins({
