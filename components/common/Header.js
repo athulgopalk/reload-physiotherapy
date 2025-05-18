@@ -2,7 +2,6 @@
 import { motion, useCycle } from "framer-motion";
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import Image from "next/image";
 
 // Nav links
 const navLinks = [
@@ -71,7 +70,7 @@ export default function Header() {
           role="img"
           aria-label="Reload Physiotherapy Logo"
         >
-          <motion.Image
+          <motion.img
             src="/logo.png" // Replace with your logo path
             alt="Reload Physiotherapy Logo"
             width={62}
