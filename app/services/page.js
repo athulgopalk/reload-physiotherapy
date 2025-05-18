@@ -1,8 +1,7 @@
-import AboutHero from "@/components/about/AboutHero";
-import ClientStories from "@/components/about/ClientStories";
-import MeetOurTeam from "@/components/about/MeetOurTeam";
-import MissionVision from "@/components/about/MissionVision";
-import OurStory from "@/components/about/OurStory";
+import CallToAction from "@/components/services/CallToAction";
+import ServicesHero from "@/components/services/ServicesHero";
+import ServicesList from "@/components/services/ServicesList";
+
 
 
 export const metadata = {
@@ -17,11 +16,9 @@ export const metadata = {
 export default function Home() {
   return (
     <div>
-     <AboutHero/>
-     <MissionVision/>
-     <OurStory/>
-     <MeetOurTeam/>
-     <ClientStories/>
+    <ServicesHero/>
+    <ServicesList/>
+    <CallToAction/>
     </div>
   );
 }
