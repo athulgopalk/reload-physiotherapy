@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 
 // Quick links
 const quickLinks = [
@@ -75,7 +76,7 @@ export default function Footer() {
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 1.5, ease: "easeOut" }}
             >
-              <motion.img
+              <motion.Image
                 src="/logo.png" // Replace with your logo path
                 alt="Reload Physiotherapy Logo"
                 width={62}
@@ -176,7 +177,7 @@ export default function Footer() {
               variants={socialVariants}
               aria-label={`Follow Reload Physiotherapy on ${social.name}`}
             >
-              <img
+              <Image
                 src={social.icon}
                 alt={`${social.name} Icon`}
                 className="w-6 h-6 md:w-7 md:h-7"
