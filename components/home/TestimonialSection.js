@@ -139,7 +139,7 @@ export default function TestimonialSection() {
                 />
                 <blockquote className="flex-1">
                   <p className="text-xs sm:text-sm text-[#1A3C5A]/80 mb-3 line-clamp-4">
-                    "{testimonial.text}"
+                    {testimonial.text}
                   </p>
                 </blockquote>
                 <footer>
@@ -157,37 +157,40 @@ export default function TestimonialSection() {
       </div>
 
       {/* SEO Metadata */}
-      <script type="application/ld+json">
-        {JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Review",
-          itemReviewed: {
-            "@type": "Organization",
-            name: "Reload Physiotherapy",
-            address: {
-              "@type": "PostalAddress",
-              addressLocality: "Kerala",
-              addressCountry: "IN",
-            },
-          },
-          review: testimonials.map((t) => ({
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
             "@type": "Review",
-            author: {
-              "@type": "Person",
-              name: t.name,
-            },
-            reviewBody: t.text,
-            reviewRating: {
-              "@type": "Rating",
-              ratingValue: 5,
-            },
-            publisher: {
+            itemReviewed: {
               "@type": "Organization",
               name: "Reload Physiotherapy",
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: "Kerala",
+                addressCountry: "IN",
+              },
             },
-          })),
-        })}
-      </script>
+            review: testimonials.map((t) => ({
+              "@type": "Review",
+              author: {
+                "@type": "Person",
+                name: t.name,
+              },
+              reviewBody: t.text,
+              reviewRating: {
+                "@type": "Rating",
+                ratingValue: 5,
+              },
+              publisher: {
+                "@type": "Organization",
+                name: "Reload Physiotherapy",
+              },
+            })),
+          }),
+        }}
+      />
     </section>
   );
 }
