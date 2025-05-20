@@ -1,3 +1,5 @@
+
+
 // "use client";
 // import { motion, useCycle } from "framer-motion";
 // import Link from "next/link";
@@ -55,7 +57,7 @@
 
 //   return (
 //     <header
-//       className={`fixed top-0 left-0 w-full bg-[#FFFFFF] z-50 transition-shadow duration-300 ${
+//       className={`fixed top-0 left-0 w-full bg-[#FFFFFF] z-50 transition-shadow duration-300  ${
 //         isScrolled ? "shadow-md" : ""
 //       }`}
 //       role="banner"
@@ -71,30 +73,29 @@
 //           aria-label="Reload Physiotherapy Logo"
 //         >
 //           <motion.img
-//             src="/logo.png" // Replace with your logo path
+//             src="/logo.png"
 //             alt="Reload Physiotherapy Logo"
 //             width={62}
 //             height={62}
 //             whileHover={{ scale: 1.05 }}
 //             transition={{ duration: 1.5, ease: "easeOut" }}
-//             className="object-contain  bg-black rounded-full"
+//             className="object-contain bg-black rounded-full"
 //           />
-          
 //         </motion.div>
 
 //         {/* Desktop Nav Links */}
 //         <ul className="hidden md:flex space-x-6 items-center">
 //           {navLinks.map((link) => (
 //             <li key={link.name}>
-//               <Link href={link.href} passHref>
-//                 <motion.a
+//               <Link href={link.href}>
+//                 <motion.span
 //                   className="text-[#1A3C5A] font-medium"
 //                   whileHover={{ color: "#00A3B3" }}
 //                   transition={{ duration: 1.5, ease: "easeOut" }}
 //                   aria-label={link.name}
 //                 >
 //                   {link.name}
-//                 </motion.a>
+//                 </motion.span>
 //               </Link>
 //             </li>
 //           ))}
@@ -152,7 +153,7 @@
 
 //       {/* Mobile Menu */}
 //       <motion.div
-//         className="md:hidden bg-[#FFFFFF] overflow-hidden max-w-[80%] mx-auto" // Adjusted width
+//         className="md:hidden bg-[#FFFFFF] overflow-hidden max-w-[80%] mx-auto"
 //         variants={menuVariants}
 //         animate={isOpen ? "open" : "closed"}
 //         role="navigation"
@@ -161,8 +162,8 @@
 //         <ul className="flex flex-col items-center py-4">
 //           {navLinks.map((link) => (
 //             <li key={link.name} className="py-2">
-//               <Link href={link.href} passHref>
-//                 <motion.a
+//               <Link href={link.href}>
+//                 <motion.span
 //                   className="text-[#1A3C5A] font-medium"
 //                   whileHover={{ color: "#00A3B3" }}
 //                   transition={{ duration: 1.5, ease: "easeOut" }}
@@ -170,7 +171,7 @@
 //                   aria-label={link.name}
 //                 >
 //                   {link.name}
-//                 </motion.a>
+//                 </motion.span>
 //               </Link>
 //             </li>
 //           ))}
@@ -214,20 +215,14 @@ const navLinks = [
 
 // Mobile menu variants
 const menuVariants = {
-  closed: { opacity: 0, height: 0, transition: { duration: 0.3 } },
-  open: { opacity: 1, height: "auto", transition: { duration: 0.3 } },
+  closed: { opacity: 0, height: 0, transition: { duration: 0.2 } },
+  open: { opacity: 1, height: "auto", transition: { duration: 0.2 } },
 };
 
 // Hamburger to "R" animation
 const hamburgerVariants = {
-  closed: {
-    rotate: 0,
-    transition: { duration: 0.5 },
-  },
-  open: {
-    rotate: 90,
-    transition: { duration: 0.5 },
-  },
+  closed: { rotate: 0, transition: { duration: 0.3 } },
+  open: { rotate: 90, transition: { duration: 0.3 } },
 };
 
 const lineVariants = {
@@ -237,7 +232,7 @@ const lineVariants = {
 
 const rVariants = {
   closed: { opacity: 0, scale: 0 },
-  open: { opacity: 1, scale: 1, transition: { duration: 0.5 } },
+  open: { opacity: 1, scale: 1, transition: { duration: 0.3 } },
 };
 
 export default function Header() {
@@ -255,41 +250,41 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full bg-[#FFFFFF] z-50 transition-shadow duration-300 ${
+      className={`fixed top-0 left-0 w-full bg-[#FFFFFF] z-50 transition-shadow duration-200 ${
         isScrolled ? "shadow-md" : ""
       }`}
       role="banner"
     >
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-4 flex justify-between items-center">
-        {/* Logo */}
+      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center h-16 sm:h-22">
+    
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.5, ease: "easeOut" }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
           className="flex items-center"
           role="img"
           aria-label="Reload Physiotherapy Logo"
         >
           <motion.img
-            src="/logo.png"
+            src="/logo.jpg"
             alt="Reload Physiotherapy Logo"
-            width={62}
-            height={62}
+            width={48}
+            height={48}
             whileHover={{ scale: 1.05 }}
-            transition={{ duration: 1.5, ease: "easeOut" }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
             className="object-contain bg-black rounded-full"
           />
         </motion.div>
 
         {/* Desktop Nav Links */}
-        <ul className="hidden md:flex space-x-6 items-center">
+        <ul className="hidden md:flex space-x-4 lg:space-x-6 items-center">
           {navLinks.map((link) => (
             <li key={link.name}>
               <Link href={link.href}>
                 <motion.span
-                  className="text-[#1A3C5A] font-medium"
+                  className="text-[#1A3C5A] text-sm lg:text-base font-medium"
                   whileHover={{ color: "#00A3B3" }}
-                  transition={{ duration: 1.5, ease: "easeOut" }}
+                  transition={{ duration: 0.3, ease: "easeOut" }}
                   aria-label={link.name}
                 >
                   {link.name}
@@ -302,15 +297,15 @@ export default function Header() {
         {/* Desktop Book Appointment Button */}
         <motion.a
           href="/contact"
-          className="hidden md:block bg-[#1A3C5A] text-white px-4 py-2 rounded-lg font-medium"
+          className="hidden md:block bg-[#1A3C5A] text-white px-3 py-1.5 lg:px-4 lg:py-2 rounded-lg text-sm lg:text-base font-medium"
           initial={{ opacity: 0, boxShadow: "0 0 0 rgba(0, 163, 179, 0)" }}
-          animate={{ opacity: 1, boxShadow: "0 0 10px rgba(0, 163, 179, 0.3)" }}
+          animate={{ opacity: 1, boxShadow: "0 0 8px rgba(0, 163, 179, 0.3)" }}
           whileHover={{
             scale: 1.05,
-            boxShadow: "0 0 15px rgba(0, 163, 179, 0.5)",
+            boxShadow: "0 0 12px rgba(0, 163, 179, 0.5)",
           }}
           whileTap={{ scale: 0.95 }}
-          transition={{ duration: 1 }}
+          transition={{ duration: 0.3 }}
           aria-label="Book Appointment"
         >
           Book Appointment
@@ -325,22 +320,22 @@ export default function Header() {
           whileHover={{ scale: 1.1 }}
         >
           <motion.span
-            className="w-6 h-0.5 bg-[#1A3C5A] mb-1.5"
+            className="w-5 h-0.5 bg-[#1A3C5A] mb-1"
             variants={lineVariants}
             animate={isOpen ? "open" : "closed"}
           />
           <motion.span
-            className="w-6 h-0.5 bg-[#1A3C5A] mb-1.5"
+            className="w-5 h-0.5 bg-[#1A3C5A] mb-1"
             variants={lineVariants}
             animate={isOpen ? "open" : "closed"}
           />
           <motion.span
-            className="w-6 h-0.5 bg-[#1A3C5A]"
+            className="w-5 h-0.5 bg-[#1A3C5A]"
             variants={lineVariants}
             animate={isOpen ? "open" : "closed"}
           />
           <motion.span
-            className="absolute text-[#00A3B3] font-bold text-lg"
+            className="absolute text-[#00A3B3] font-bold text-base"
             variants={rVariants}
             animate={isOpen ? "open" : "closed"}
           >
@@ -351,20 +346,20 @@ export default function Header() {
 
       {/* Mobile Menu */}
       <motion.div
-        className="md:hidden bg-[#FFFFFF] overflow-hidden max-w-[80%] mx-auto"
+        className="md:hidden bg-[#FFFFFF] overflow-hidden"
         variants={menuVariants}
         animate={isOpen ? "open" : "closed"}
         role="navigation"
         aria-label="Mobile Menu"
       >
-        <ul className="flex flex-col items-center py-4">
+        <ul className="flex flex-col items-center py-2">
           {navLinks.map((link) => (
-            <li key={link.name} className="py-2">
+            <li key={link.name} className="py-1.5">
               <Link href={link.href}>
                 <motion.span
-                  className="text-[#1A3C5A] font-medium"
+                  className="text-[#1A3C5A] text-sm font-medium"
                   whileHover={{ color: "#00A3B3" }}
-                  transition={{ duration: 1.5, ease: "easeOut" }}
+                  transition={{ duration: 0.3, ease: "easeOut" }}
                   onClick={() => toggleOpen()}
                   aria-label={link.name}
                 >
@@ -373,16 +368,16 @@ export default function Header() {
               </Link>
             </li>
           ))}
-          <li className="py-2">
+          <li className="py-1.5">
             <motion.a
               href="/contact"
-              className="bg-[#1A3C5A] text-white px-4 py-2 rounded-lg font-medium"
+              className="bg-[#1A3C5A] text-white px-3 py-1.5 rounded-lg text-sm font-medium"
               whileHover={{
                 scale: 1.05,
-                boxShadow: "0 0 15px rgba(0, 163, 179, 0.5)",
+                boxShadow: "0 0 12px rgba(0, 163, 179, 0.5)",
               }}
               whileTap={{ scale: 0.95 }}
-              transition={{ duration: 1 }}
+              transition={{ duration: 0.3 }}
               onClick={() => toggleOpen()}
               aria-label="Book Appointment"
             >

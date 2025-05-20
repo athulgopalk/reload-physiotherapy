@@ -6,9 +6,9 @@ import { useState, useEffect } from "react";
 
 // Placeholder carousel images
 const carouselImages = [
-  { src: "/hero/slide1.jpg", alt: "Physiotherapy Waveform 1" },
-  { src: "/hero/slide2.jpg", alt: "Physiotherapy Waveform 2" },
-  { src: "/hero/slide3.jpg", alt: "Physiotherapy Waveform 3" },
+  { src: "/Slide1.webp", alt: "Physiotherapy Waveform 1" },
+  { src: "/Slide2.webp", alt: "Physiotherapy Waveform 2" },
+  { src: "/Slide3.webp", alt: "Physiotherapy Waveform 3" },
 ];
 
 // Animation variants
@@ -74,7 +74,7 @@ export default function Hero() {
 
   return (
     <section
-      className="relative w-full h-screen flex items-center justify-center bg-[#E8F5FF] overflow-hidden"
+      className="relative w-full h-screen flex items-center justify-center  overflow-hidden"
       role="region"
       aria-label="Hero Section"
     >
@@ -96,15 +96,14 @@ export default function Hero() {
               placeholder="blur"
               blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACklEQVR4nGMAAQAABQABDQottAAAAABJRU5ErkJggg=="
               loading="eager"
-              className="opacity-30"
             />
           </motion.div>
         ))}
         <div
-          className="absolute inset-0 bg-[url('/waveform-bg.svg')] bg-cover bg-center opacity-20"
+          className="absolute inset-0 bg-[url('/waveform-bg.svg')] bg-cover bg-center"
           style={{ transform: "translateY(var(--parallax-offset, 0))" }}
         />
-        <div className="absolute inset-0 bg-[#E8F5FF]/70" />
+        {/* <div className="absolute inset-0 bg-[#E8F5FF]/70" /> */}
       </div>
 
       {/* Particle Effect */}
