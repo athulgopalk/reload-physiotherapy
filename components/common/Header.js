@@ -66,7 +66,7 @@ export default function Header() {
           aria-label="Reload Physiotherapy Logo"
         >
           <motion.img
-            src="/logo-m.png"
+            src="/logo-real.png"
             alt="Reload Physiotherapy Logo"
             width={121}
             height={121}
