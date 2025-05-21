@@ -1,53 +1,55 @@
+
+"use client";
 import { motion } from "framer-motion";
 import ServiceImage from "./ServiceImage";
 import ServiceDetails from "./ServiceDetails";
 
-// Card animation: Border glow on hover, no scaling for classy look
+// Card animation: Subtle border glow on hover
 const cardVariants = {
-  rest: { boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)" },
+  rest: { boxShadow: "0 2px 8px rgba(0, 0, 0, 0.08)" },
   hover: {
-    boxShadow: "0 0 12px rgba(0, 163, 179, 0.4)",
-    transition: { duration: 0.5, ease: "easeOut" },
+    boxShadow: "0 0 10px rgba(0, 163, 179, 0.3)",
+    transition: { duration: 0.3, ease: "easeOut" },
   },
 };
 
-// Healing Ripple: Teal wave expands on hover, symbolizing recovery
+// Healing Ripple: Lightweight teal wave effect
 const rippleVariants = {
   rest: { scale: 0, opacity: 0 },
   hover: {
-    scale: 1.1,
-    opacity: 0.15,
-    transition: { duration: 1.2, ease: "easeOut" },
+    scale: 1.05,
+    opacity: 0.08,
+    transition: { duration: 0.6, ease: "easeOut" },
   },
 };
 
-// Vignette: Soft teal overlay for depth and hope-giving vibe
+// Vignette: Minimal overlay for depth
 const vignetteVariants = {
   rest: { opacity: 0 },
   hover: {
-    opacity: 0.2,
-    transition: { duration: 0.5, ease: "easeOut" },
+    opacity: 0.1,
+    transition: { duration: 0.3, ease: "easeOut" },
   },
 };
 
 export default function ServiceCard({ service }) {
   return (
     <motion.div
-      className="relative bg-white rounded-lg shadow-lg border border-[#00A3B3]/50 bg-gradient-to-br from-[#E8F5FF]/20 to-[#FFFFFF] overflow-hidden w-full max-w-96 mx-auto h-96"
+      className="relative bg-white rounded-xl shadow-md border border-[#00A3B3]/20 overflow-hidden w-full max-w-[16rem] mx-auto h-[24rem]"
       variants={cardVariants}
       initial="rest"
       whileHover="hover"
     >
-      {/* Healing Ripple: Teal wave effect on hover */}
+      {/* Healing Ripple */}
       <motion.div
         className="absolute inset-0 bg-[radial-gradient(circle_at_center,#00A3B3_0%,transparent_70%)]"
         variants={rippleVariants}
         initial="rest"
         whileHover="hover"
       />
-      {/* Vignette: Soft teal overlay for depth */}
+      {/* Vignette */}
       <motion.div
-        className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,163,179,0.3)_0%,transparent_70%)]"
+        className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,163,179,0.15)_0%,transparent_70%)]"
         variants={vignetteVariants}
         initial="rest"
         whileHover="hover"

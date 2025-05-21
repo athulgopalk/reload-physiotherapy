@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image"; // Import Next.js Image component
 import { useState } from "react";
 
 // Service data
@@ -8,63 +9,19 @@ const services = [
   {
     title: "Pain Management",
     description: "Relieve back, neck, and joint pain.",
-    icon: (
-      <svg
-        width="40"
-        height="40"
-        viewBox="0 0 24 24"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        aria-label="Pain Management Icon"
-      >
-        <path
-          d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"
-          fill="#00A3B3"
-        />
-        <path d="M12 6v12" stroke="#1A3C5A" strokeWidth="2" />
-      </svg>
-    ),
+    icon: "/pain-management.webp", // Ensure this file exists in the public folder
   },
   {
     title: "Sports Injuries",
     description: "Recover and return to sport.",
-    icon: (
-      <svg
-        width="40"
-        height="40"
-        viewBox="0 0 24 24"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        aria-label="Sports Injuries Icon"
-      >
-        <path
-          d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"
-          fill="#00A3B3"
-        />
-        <path d="M8 8l8 8" stroke="#1A3C5A" strokeWidth="2" />
-      </svg>
-    ),
+    icon: "/sports.webp",
   },
   {
     title: "Post-Surgery",
     description: "Restore mobility after surgery.",
-    icon: (
-      <svg
-        width="40"
-        height="40"
-        viewBox="0 0 24 24"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        aria-label="Post-Surgery Icon"
-      >
-        <path
-          d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"
-          fill="#00A3B3"
-        />
-        <path d="M6 12h12" stroke="#1A3C5A" strokeWidth="2" />
-      </svg>
-    ),
+    icon: "/post-surgical.webp",
   },
+  
 ];
 
 // Animation variants
@@ -157,7 +114,19 @@ export default function ServicesOverview() {
                 animate={hoveredCard === index ? "hidden" : "visible"}
                 variants={frontVariants}
               >
-                <div className="mb-4">{service.icon}</div>
+                <div className="mb-4">
+                  {typeof service.icon === "string" ? (
+                    <Image
+                      src={service.icon}
+                      alt={`${service.title} Icon`}
+                      width={60}
+                      height={60}
+                      className="object-contain"
+                    />
+                  ) : (
+                    service.icon
+                  )}
+                </div>
                 <h3 className="text-lg font-semibold text-[#1A3C5A] font-poppins">
                   {service.title}
                 </h3>

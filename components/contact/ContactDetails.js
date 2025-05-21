@@ -6,8 +6,8 @@ import { Mail, Phone, MapPin } from "lucide-react";
 const contacts = [
   {
     label: "Email Us",
-    detail: "info@reloadphysio.com",
-    href: "mailto:info@reloadphysio.com",
+    detail: "reloadphysiotherapy@gmail.com",
+    href: "mailto:reloadphysiotherapy@gmail.com",
     icon: <Mail className="w-8 h-8 sm:w-10 sm:h-10 text-[#00A3B3]" />,
   },
   {
@@ -18,7 +18,7 @@ const contacts = [
   },
   {
     label: "Visit Us",
-    detail: "Mumbai, India",
+    detail: "Mangaluru, Karnataka",
     href: "#", // Placeholder, update with Google Maps link if available
     icon: <MapPin className="w-8 h-8 sm:w-10 sm:h-10 text-[#00A3B3]" />,
   },

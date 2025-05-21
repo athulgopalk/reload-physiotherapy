@@ -1,23 +1,24 @@
+
+
+"use client";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
-// Add images in public/images/ and reference in ServicesList.js services array
-// Example: { id: "pain-management", image: "/images/pain-management.webp" }
-// Images should be 600x400px, WebP, <150KB for performance
+// Image animation: Subtle fade and hue shift
 const imageVariants = {
   initial: { opacity: 0 },
-  visible: { opacity: 0.9, transition: { duration: 0.5, ease: "easeOut" } },
+  visible: { opacity: 0.95, transition: { duration: 0.4, ease: "easeOut" } },
   hover: {
     opacity: 1,
-    filter: "hue-rotate(20deg)",
-    transition: { duration: 0.4, ease: "easeOut" },
+    filter: "hue-rotate(10deg)",
+    transition: { duration: 0.3, ease: "easeOut" },
   },
 };
 
 export default function ServiceImage({ src, alt }) {
   return (
     <motion.div
-      className="relative w-full h-48 sm:h-56 md:h-64 overflow-hidden"
+      className="relative w-full h-[10rem] overflow-hidden"
       initial="initial"
       animate="visible"
       whileHover="hover"
@@ -26,10 +27,12 @@ export default function ServiceImage({ src, alt }) {
       <Image
         src={src}
         alt={alt}
-        width={600}
-        height={400}
+        width={288}
+        height={160}
         className="w-full h-full object-cover"
         loading="lazy"
+        sizes="(max-width: 768px) 100vw, 288px"
+        quality={75}
       />
     </motion.div>
   );

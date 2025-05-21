@@ -103,7 +103,7 @@ export default function Hero() {
           className="absolute inset-0 bg-[url('/waveform-bg.svg')] bg-cover bg-center"
           style={{ transform: "translateY(var(--parallax-offset, 0))" }}
         />
-        {/* <div className="absolute inset-0 bg-[#E8F5FF]/70" /> */}
+        <div className="absolute inset-0 bg-[#000]/3" />
       </div>
 
       {/* Particle Effect */}
@@ -149,7 +149,7 @@ export default function Hero() {
           className="text-lg sm:text-xl md:text-2xl text-[#1A3C5A] mb-8"
           variants={subtextVariants}
         >
-          Expert physiotherapy solutions across India.
+          Bringing expert physiotherapy care right to your doorstep.
         </motion.p>
         <div className="flex justify-center space-x-4">
           <Link href="/services" passHref>

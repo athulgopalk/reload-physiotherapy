@@ -64,9 +64,10 @@ const particleVariants = {
 export default function JoinTeam() {
   return (
     <section
-      className="relative bg-[#E8F5FF] py-16 sm:py-20 md:py-24 overflow-hidden"
+      className="relative bg-[#E8F5FF] py-16 sm:py-20 md:py-24 overflow-hidden "
       role="complementary"
       aria-label="Join Our Team"
+      id="career"
     >
       {/* Background */}
       <div className="absolute inset-0 bg-[url('/waveform-bg.svg')] bg-cover bg-center opacity-10 animate-[wave_20s_linear_infinite]" />
@@ -138,7 +139,7 @@ export default function JoinTeam() {
             whileHover="hover"
           />
           <motion.a
-            href="https://wa.me/your_number" // Replace with WhatsApp number or group link
+            href="https://chat.whatsapp.com/CuJHNsfImB70pjdCH1oWRw" // Replace with WhatsApp number or group link
             className="relative bg-[#00A3B3] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#1A3C5A] transition-colors duration-300"
             variants={buttonVariants}
             initial="rest"

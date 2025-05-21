@@ -90,8 +90,9 @@ export default function MissionVision() {
               Our Vision
             </h3>
             <p className="text-sm sm:text-base text-[#1A3C5A]/80">
-              To be India’s leading physiotherapy provider, blending innovation
-              and care.
+              To lead the way in physiotherapy by delivering personalized,
+              innovative, and result-driven treatment solutions that help people
+              move better and live stronger.
             </p>
           </motion.div>
         </motion.div>

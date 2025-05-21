@@ -19,7 +19,7 @@ export default function Home() {
     <div>
      <AboutHero/>
      <MissionVision/>
-     <OurStory/>
+     {/* <OurStory/> */}
      <MeetOurTeam/>
      <ClientStories/>
     </div>

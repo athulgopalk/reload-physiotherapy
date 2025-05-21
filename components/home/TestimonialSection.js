@@ -6,34 +6,39 @@ import { Quote } from "lucide-react";
 // Testimonial data
 const testimonials = [
   {
-    name: "Anoop Menon",
-    text: "Reload Physio transformed my recovery after a knee injury. Their expertise and care made all the difference!",
-    location: "Kochi, Kerala",
+    name: " Bhaskar Ullal",
+    text: "I am truly grateful for the care I received at the facility in Ullal. The treatment I underwent has completely relieved my pain, and I can now move freely and perform my daily activities without any discomfort. The team’s support and expertise made all the difference. Thank you for helping me get back to my normal life",
+    location: "Ullal, Kerala",
   },
   {
-    name: "Priya Nair",
-    text: "The team’s personalized approach helped me regain mobility post-surgery. Highly recommend their services!",
-    location: "Trivandrum, Kerala",
+    name: "Rajan P",
+    text: "I am currently receiving rehabilitation treatment for my lower back pain and knee osteoarthritis at the facility. The care and attention from the team have been very supportive, and I’m hopeful about my progress. While I’m still in treatment, I appreciate the efforts to help manage my pain and improve my mobility. Thank you for your ongoing care.",
+    location: "Maimoona, Kerala",
   },
   {
-    name: "Vishnu Suresh",
-    text: "Professional and compassionate care. My back pain is gone thanks to Reload Physio’s tailored sessions.",
-    location: "Kozhikode, Kerala",
+    name: "Anitha K",
+    text: "I had severe neck and shoulder pain that was affecting my sleep and daily life. After starting treatment, I slowly began to feel better. The support I received made all the difference. I'm now able to move freely without discomfort. Truly thankful for the care and guidance.",
+    location: "Kasaragod, Kerala",
   },
   {
-    name: "Lakshmi Venu",
-    text: "Their neuro physiotherapy sessions improved my strength significantly. Truly grateful for their support!",
-    location: "Thrissur, Kerala",
+    name: "Shyam Raj",
+    text: "I was recovering from a sports injury and couldn’t walk properly for weeks. The treatment helped me gain strength and confidence again. Every session brought small improvements, and now I’m almost back to normal. Really appreciate the patience and support throughout.",
+    location: "Kanhangad, Kerala",
   },
   {
-    name: "Rahul Pillai",
-    text: "Reload Physio’s sports rehab got me back on the field faster than expected. Exceptional service!",
-    location: "Alappuzha, Kerala",
+    name: "Fathima N",
+    text: "After my knee surgery, I was really anxious about recovery. But the process was smooth and encouraging. The way I was guided through each step helped me regain both strength and hope. I can finally move around without fear. Thank you for being so kind and professional.",
+    location: "Kannur, Kerala",
   },
   {
-    name: "Meera Thomas",
-    text: "The staff’s dedication and knowledge made my recovery smooth and stress-free. Best physio in Kerala!",
-    location: "Kollam, Kerala",
+    name: "Ravi Shetty",
+    text: "I had been dealing with chronic back pain for years. Tried many things, but nothing really helped until I started this treatment. The pain has reduced a lot, and I feel much more active now. The care I received was consistent and honest. Can’t thank you enough.",
+    location: "Mangalore, Karnataka",
+  },
+  {
+    name: "Megha Suresh",
+    text: "I was struggling with shoulder pain that made everyday tasks difficult. The exercises and therapy I received helped me get back to normal slowly and steadily. Now I can work and sleep without pain. I’m genuinely grateful for the support and care throughout.",
+    location: "Indiranagar, Bangalore, Karnataka",
   },
 ];
 
