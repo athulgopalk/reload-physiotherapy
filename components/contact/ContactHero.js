@@ -1,5 +1,6 @@
 "use client";
 import { motion, useScroll, useTransform } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
 
@@ -59,7 +60,7 @@ export default function ContactHero() {
         animate={{ opacity: 0.2, scale: 1 }}
         transition={{ duration: 5, repeat: Infinity, repeatType: "reverse" }}
       >
-        <img
+        <Image
           src="/joint-illustration.svg"
           alt="Joint illustration"
           className="w-1/2 max-w-md"

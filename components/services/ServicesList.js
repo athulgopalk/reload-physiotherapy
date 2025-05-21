@@ -1,7 +1,19 @@
-
+// components/services/ServicesList.js
 "use client";
 import { motion } from "framer-motion";
-import ServiceCard from "@/components/common/ServiceCard";
+import Image from "next/image";
+import {
+  Activity,
+  Bone,
+  Brain,
+  Dumbbell,
+  Hand,
+  Laptop,
+  Sparkles,
+  UserCheck,
+  Users,
+  Zap,
+} from "lucide-react";
 
 // Services data
 const services = [
@@ -77,6 +89,20 @@ const services = [
   },
 ];
 
+// Icon mapping with Lucide icons
+const icons = {
+  SpineIcon: () => <Bone size={24} className="text-[#00A3B3]" />,
+  RunningIcon: () => <Activity size={24} className="text-[#00A3B3]" />,
+  KneeIcon: () => <Bone size={24} className="text-[#00A3B3]" />,
+  HandsIcon: () => <Hand size={24} className="text-[#00A3B3]" />,
+  NeedleIcon: () => <Zap size={24} className="text-[#00A3B3]" />,
+  PostureIcon: () => <UserCheck size={24} className="text-[#00A3B3]" />,
+  BrainIcon: () => <Brain size={24} className="text-[#00A3B3]" />,
+  ChildElderlyIcon: () => <Users size={24} className="text-[#00A3B3]" />,
+  DumbbellIcon: () => <Dumbbell size={24} className="text-[#00A3B3]" />,
+  LaptopIcon: () => <Laptop size={24} className="text-[#00A3B3]" />,
+};
+
 // Animation variants
 const cardVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -95,6 +121,145 @@ const webVariants = {
   },
 };
 
+// Card animation: Subtle border glow on hover
+const serviceCardVariants = {
+  rest: { boxShadow: "0 2px 8px rgba(0, 0, 0, 0.08)" },
+  hover: {
+    boxShadow: "0 0 10px rgba(0, 163, 179, 0.3)",
+    transition: { duration: 0.3, ease: "easeOut" },
+  },
+};
+
+// Healing Ripple: Lightweight teal wave effect
+const rippleVariants = {
+  rest: { scale: 0, opacity: 0 },
+  hover: {
+    scale: 1.05,
+    opacity: 0.08,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
+};
+
+// Vignette: Minimal overlay for depth
+const vignetteVariants = {
+  rest: { opacity: 0 },
+  hover: {
+    opacity: 0.1,
+    transition: { duration: 0.3, ease: "easeOut" },
+  },
+};
+
+// Image animation: Subtle fade and hue shift
+const imageVariants = {
+  initial: { opacity: 0 },
+  visible: { opacity: 0.95, transition: { duration: 0.4, ease: "easeOut" } },
+  hover: {
+    opacity: 1,
+    filter: "hue-rotate(10deg)",
+    transition: { duration: 0.3, ease: "easeOut" },
+  },
+};
+
+// Icon animation: Subtle scale and glow
+const iconVariants = {
+  rest: { scale: 1 },
+  hover: {
+    scale: 1.1,
+    boxShadow: "0 0 6px rgba(0, 163, 179, 0.3)",
+    transition: { duration: 0.3, ease: "easeOut" },
+  },
+};
+
+// Content animation
+const contentVariants = {
+  initial: { opacity: 0, y: 8 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.4, ease: "easeOut" },
+  },
+};
+
+// ServiceImage Component
+function ServiceImage({ src, alt }) {
+  return (
+    <motion.div
+      className="relative w-full h-[10rem] overflow-hidden"
+      initial="initial"
+      animate="visible"
+      whileHover="hover"
+      variants={imageVariants}
+    >
+      <Image
+        src={src}
+        alt={alt}
+        width={288}
+        height={160}
+        className="w-full h-full object-cover"
+        loading="lazy"
+        sizes="(max-width: 768px) 100vw, 288px"
+        quality={75}
+      />
+    </motion.div>
+  );
+}
+
+// ServiceDetails Component
+function ServiceDetails({ service }) {
+  const Icon = icons[service.icon] || Sparkles;
+
+  return (
+    <motion.div
+      className="p-3 flex flex-col items-center justify-center h-[calc(100%-8rem)] text-center"
+      variants={contentVariants}
+      initial="initial"
+      animate="visible"
+    >
+      <div className="flex items-center justify-center mb-2">
+        <motion.div variants={iconVariants} initial="rest" whileHover="hover">
+          <Icon />
+        </motion.div>
+      </div>
+      <h3 className="text-base font-semibold text-[#1A3C5A] mb-1 font-poppins">
+        {service.title}
+      </h3>
+      <p className="text-xs text-[#1A3C5A]/80 line-clamp-3">
+        {service.description}
+      </p>
+    </motion.div>
+  );
+}
+
+// ServiceCard Component
+function ServiceCard({ service }) {
+  return (
+    <motion.div
+      className="relative bg-white rounded-xl shadow-md border border-[#00A3B3]/20 overflow-hidden w-full max-w-[16rem] mx-auto h-[24rem]"
+      variants={serviceCardVariants}
+      initial="rest"
+      whileHover="hover"
+    >
+      {/* Healing Ripple */}
+      <motion.div
+        className="absolute inset-0 bg-[radial-gradient(circle_at_center,#00A3B3_0%,transparent_70%)]"
+        variants={rippleVariants}
+        initial="rest"
+        whileHover="hover"
+      />
+      {/* Vignette */}
+      <motion.div
+        className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,163,179,0.15)_0%,transparent_70%)]"
+        variants={vignetteVariants}
+        initial="rest"
+        whileHover="hover"
+      />
+      <ServiceImage src={service.image} alt={service.title} />
+      <ServiceDetails service={service} />
+    </motion.div>
+  );
+}
+
+// ServicesList Component
 export default function ServicesList() {
   return (
     <section
