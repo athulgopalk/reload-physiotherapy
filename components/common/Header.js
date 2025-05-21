@@ -4,6 +4,7 @@ import { motion, useCycle } from "framer-motion";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 
+
 // Nav links
 const navLinks = [
   { name: "Home", href: "/" },
@@ -66,7 +67,7 @@ export default function Header() {
           aria-label="Reload Physiotherapy Logo"
         >
           <motion.img
-            src="/logo-real.png"
+            src="/logo.webp"
             alt="Reload Physiotherapy Logo"
             width={121}
             height={121}
