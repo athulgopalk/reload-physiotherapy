@@ -63,6 +63,8 @@ export default function ContactHero() {
         <Image
           src="/joint-illustration.svg"
           alt="Joint illustration"
+          width={100}
+          height={0}
           className="w-1/2 max-w-md"
           aria-hidden="true"
         />

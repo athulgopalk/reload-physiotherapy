@@ -2,18 +2,6 @@
 "use client";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import {
-  Activity,
-  Bone,
-  Brain,
-  Dumbbell,
-  Hand,
-  Laptop,
-  Sparkles,
-  UserCheck,
-  Users,
-  Zap,
-} from "lucide-react";
 
 // Services data
 const services = [
@@ -22,86 +10,74 @@ const services = [
     title: "Pain Management",
     icon: "SpineIcon",
     description: "Relieve back, neck, and joint pain with targeted therapies.",
-    image: "/images/pain-management.webp",
+    image: "/services/pain-management.webp",
   },
   {
     id: "sports-injury",
     title: "Sports Injury Rehabilitation",
     icon: "RunningIcon",
     description: "Recover from acute and chronic sports injuries.",
-    image: "/images/sports-injury.webp",
+    image: "/services/sports-injury.webp",
   },
   {
     id: "post-surgical",
     title: "Post-Surgical Rehabilitation",
     icon: "KneeIcon",
     description: "Restore mobility after orthopedic surgeries.",
-    image: "/images/post-surgical.webp",
+    image: "/services/post-surgical.webp",
   },
   {
     id: "manual-therapy",
     title: "Manual Therapy",
     icon: "HandsIcon",
     description: "Joint mobilizations and soft tissue release.",
-    image: "/images/manual-therapy.webp",
+    image: "/services/manual-therapy.webp",
   },
   {
     id: "dry-needling",
     title: "Dry Needling & Cupping",
     icon: "NeedleIcon",
     description: "Target muscle trigger points for pain relief.",
-    image: "/images/dry-needling.webp",
+    image: "/services/dry-needling.webp",
   },
   {
     id: "posture-correction",
     title: "Posture & Ergonomic Training",
     icon: "PostureIcon",
     description: "Improve posture and optimize workstation setup.",
-    image: "/images/posture-correction.webp",
+    image: "/services/posture-correction.webp",
   },
   {
     id: "neuro-physio",
     title: "Neuro Physiotherapy",
     icon: "BrainIcon",
     description: "Rehabilitation for stroke, Parkinson’s, and spinal injuries.",
-    image: "/images/neuro-physio.webp",
+    image: "/services/neuro-physio.webp",
   },
   {
     id: "pediatric-geriatric",
     title: "Pediatric & Geriatric Care",
     icon: "ChildElderlyIcon",
     description: "Support for developmental delays and fall prevention.",
-    image: "/images/pediatric-geriatric.webp",
+    image: "/services/pediatric-geriatric.webp",
   },
   {
     id: "fitness-preventive",
     title: "Fitness & Preventive Programs",
     icon: "DumbbellIcon",
     description: "Custom fitness routines and injury prevention plans.",
-    image: "/images/fitness-preventive.webp",
+    image: "/services/fitness-preventive.webp",
   },
   {
     id: "tele-physio",
     title: "Tele-Physiotherapy",
     icon: "LaptopIcon",
     description: "Virtual consultations for convenient care.",
-    image: "/images/tele-physio.webp",
+    image: "/services/tele-physio.webp",
   },
 ];
 
-// Icon mapping with Lucide icons
-const icons = {
-  SpineIcon: () => <Bone size={24} className="text-[#00A3B3]" />,
-  RunningIcon: () => <Activity size={24} className="text-[#00A3B3]" />,
-  KneeIcon: () => <Bone size={24} className="text-[#00A3B3]" />,
-  HandsIcon: () => <Hand size={24} className="text-[#00A3B3]" />,
-  NeedleIcon: () => <Zap size={24} className="text-[#00A3B3]" />,
-  PostureIcon: () => <UserCheck size={24} className="text-[#00A3B3]" />,
-  BrainIcon: () => <Brain size={24} className="text-[#00A3B3]" />,
-  ChildElderlyIcon: () => <Users size={24} className="text-[#00A3B3]" />,
-  DumbbellIcon: () => <Dumbbell size={24} className="text-[#00A3B3]" />,
-  LaptopIcon: () => <Laptop size={24} className="text-[#00A3B3]" />,
-};
+
 
 // Animation variants
 const cardVariants = {
@@ -155,13 +131,13 @@ const imageVariants = {
   visible: { opacity: 0.95, transition: { duration: 0.4, ease: "easeOut" } },
   hover: {
     opacity: 1,
-    filter: "hue-rotate(10deg)",
+    filter: "",
     transition: { duration: 0.3, ease: "easeOut" },
   },
 };
 
-// Icon animation: Subtle scale and glow
-const iconVariants = {
+// Custom image animation: Subtle scale and glow
+const customImageVariants = {
   rest: { scale: 1 },
   hover: {
     scale: 1.1,
@@ -184,21 +160,20 @@ const contentVariants = {
 function ServiceImage({ src, alt }) {
   return (
     <motion.div
-      className="relative w-full h-[10rem] overflow-hidden"
+      className="relative w-full h-[85%] overflow-hidden rounded-t-xl"
       initial="initial"
       animate="visible"
-      whileHover="hover"
+      // whileHover="hover"
       variants={imageVariants}
     >
       <Image
         src={src}
         alt={alt}
         width={288}
-        height={160}
-        className="w-full h-full object-cover"
+        height={288} // Adjusted for 1:1 aspect ratio
+        className="w-full h-full object-cover hover:scale-110 transition-all "
         loading="lazy"
         sizes="(max-width: 768px) 100vw, 288px"
-        quality={75}
       />
     </motion.div>
   );
@@ -206,26 +181,34 @@ function ServiceImage({ src, alt }) {
 
 // ServiceDetails Component
 function ServiceDetails({ service }) {
-  const Icon = icons[service.icon] || Sparkles;
-
   return (
     <motion.div
-      className="p-3 flex flex-col items-center justify-center h-[calc(100%-8rem)] text-center"
+      className="p-2 flex items-center h-[20%] w-full"
       variants={contentVariants}
       initial="initial"
       animate="visible"
     >
-      <div className="flex items-center justify-center mb-2">
-        <motion.div variants={iconVariants} initial="rest" whileHover="hover">
-          <Icon />
-        </motion.div>
+      <motion.div
+        variants={customImageVariants}
+        initial="rest"
+        whileHover="hover"
+        className="flex items-center justify-center w-8 h-8 bg-[#00A3B3]/10 rounded-full mr-3"
+      >
+        <Image
+          src={service.customImage || "/placeholder-icon.png"} // Add your custom image path in the services array
+          // alt={`${service.title} icon`}
+          width={20}
+          height={20}
+        />
+      </motion.div>
+      <div className="">
+        <h3 className="text-sm font-semibold text-[#1A3C5A] font-poppins">
+          {service.title}
+        </h3>
+        <p className="text-xs text-[#1A3C5A]/80">
+          {service.description}
+        </p>
       </div>
-      <h3 className="text-base font-semibold text-[#1A3C5A] mb-1 font-poppins">
-        {service.title}
-      </h3>
-      <p className="text-xs text-[#1A3C5A]/80 line-clamp-3">
-        {service.description}
-      </p>
     </motion.div>
   );
 }
@@ -234,7 +217,7 @@ function ServiceDetails({ service }) {
 function ServiceCard({ service }) {
   return (
     <motion.div
-      className="relative bg-white rounded-xl shadow-md border border-[#00A3B3]/20 overflow-hidden w-full max-w-[16rem] mx-auto h-[24rem]"
+      className="relative bg-white rounded-xl shadow-md border border-[#00A3B3]/20 overflow-hidden w-full max-w-[18rem] h-[24rem] flex flex-col"
       variants={serviceCardVariants}
       initial="rest"
       whileHover="hover"
@@ -263,7 +246,7 @@ function ServiceCard({ service }) {
 export default function ServicesList() {
   return (
     <section
-      className="relative bg-[#F7F7F7] py-10 sm:py-12 md:py-16 overflow-hidden"
+      className="relative bg-[#F7F7F7] py-12 md:py-16 overflow-hidden"
       role="region"
       aria-label="Physiotherapy Services"
     >
@@ -285,10 +268,10 @@ export default function ServicesList() {
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#1A3C5A] text-center mb-6 sm:mb-8 font-poppins">
+        <h2 className="text-3xl md:text-4xl font-bold text-[#1A3C5A] text-center mb-8 md:mb-12 font-poppins">
           Our Services
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {services.map((service, index) => (
             <motion.div
               key={service.id}
