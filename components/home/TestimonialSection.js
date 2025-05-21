@@ -35,11 +35,7 @@ const testimonials = [
     text: "I had been dealing with chronic back pain for years. Tried many things, but nothing really helped until I started this treatment. The pain has reduced a lot, and I feel much more active now. The care I received was consistent and honest. Can’t thank you enough.",
     location: "Mangalore, Karnataka",
   },
-  {
-    name: "Megha Suresh",
-    text: "I was struggling with shoulder pain that made everyday tasks difficult. The exercises and therapy I received helped me get back to normal slowly and steadily. Now I can work and sleep without pain. I’m genuinely grateful for the support and care throughout.",
-    location: "Indiranagar, Bangalore, Karnataka",
-  },
+ 
 ];
 
 // Animation variants

@@ -82,7 +82,7 @@ export default function Footer() {
               transition={{ duration: 1.5, ease: "easeOut" }}
             >
               <Image
-                src="/logo-min.png"
+                src="/logo-m.png"
                 alt="Reload Physiotherapy Logo"
                 width={84}
                 height={84}
