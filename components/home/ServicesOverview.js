@@ -1,15 +1,15 @@
 "use client";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import Image from "next/image"; // Import Next.js Image component
-import { useState } from "react";
+import Image from "next/image";
+import { useState, useEffect, useRef } from "react";
 
 // Service data
 const services = [
   {
     title: "Pain Management",
     description: "Relieve back, neck, and joint pain.",
-    icon: "/pain-management.webp", // Ensure this file exists in the public folder
+    icon: "/pain-management.webp",
   },
   {
     title: "Sports Injuries",
@@ -21,78 +21,114 @@ const services = [
     description: "Restore mobility after surgery.",
     icon: "/post-surgical.webp",
   },
-  
 ];
 
 // Animation variants
 const headingVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 1.5, ease: "easeOut" } },
-};
-
-const frontVariants = {
-  visible: { opacity: 1, transition: { duration: 1.5, ease: "easeOut" } },
-  hidden: { opacity: 0, transition: { duration: 1.5, ease: "easeOut" } },
-};
-
-const backVariants = {
-  visible: { opacity: 1, transition: { duration: 1.5, ease: "easeOut" } },
-  hidden: { opacity: 0, transition: { duration: 1.5, ease: "easeOut" } },
+  hidden: { opacity: 0, y: 15 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } },
 };
 
 const cardVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: "easeOut", staggerChildren: 0.1 },
+  },
   hover: {
     borderColor: "#00A3B3",
-    boxShadow: "0 10px 15px rgba(0, 163, 179, 0.2)",
-    transition: { duration: 1, ease: "easeOut" },
+    boxShadow: "0 8px 16px rgba(0, 163, 179, 0.3)",
+    transition: { duration: 0.3, ease: "easeOut" },
   },
+};
+
+const frontVariants = {
+  visible: { opacity: 1, transition: { duration: 0.3, ease: "easeOut" } },
+  hidden: { opacity: 0, transition: { duration: 0.3, ease: "easeOut" } },
+};
+
+const backVariants = {
+  visible: { opacity: 1, transition: { duration: 0.3, ease: "easeOut" } },
+  hidden: { opacity: 0, transition: { duration: 0.3, ease: "easeOut" } },
 };
 
 const buttonVariants = {
   hover: {
     scale: 1.05,
-    boxShadow: "0 0 10px rgba(0, 163, 179, 0.5)",
-    transition: { duration: 1 },
+    backgroundColor: "#134467",
+    boxShadow: "0 4px 12px rgba(0, 163, 179, 0.5)",
+    transition: { duration: 0.2, ease: "easeOut" },
   },
   tap: { scale: 0.95 },
 };
 
 export default function ServicesOverview() {
   const [hoveredCard, setHoveredCard] = useState(null);
+  const sectionRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  // Preload service icons
+  useEffect(() => {
+    services.forEach((service) => {
+      const link = document.createElement("link");
+      link.rel = "preload";
+      link.as = "image";
+      link.href = service.icon;
+      document.head.appendChild(link);
+      return () => document.head.removeChild(link);
+    });
+  }, []);
+
+  // Trigger animations on visibility
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.3, rootMargin: "100px" }
+    );
+
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <section
-      className="relative bg-[#E8F5FF] py-16 overflow-hidden"
+      ref={sectionRef}
+      className="relative bg-gradient-to-br from-[#F1F7FE] to-[#D9EFFF] py-12 overflow-hidden"
       role="region"
-      aria-label="Services Overview"
+      aria-label="Services Overview for Reload Physiotherapy"
     >
       {/* Waveform Background */}
       <div
-        className="absolute inset-0 bg-[url('/waveform-bg.svg')] bg-cover bg-center opacity-10 animate-[wave_10s_linear_infinite]"
-        style={{
-          backgroundPosition: "center",
-        }}
+        className="absolute inset-0 bg-[url('/waveform-bg.svg')] bg-cover bg-center opacity-15"
+        style={{ willChange: "transform" }}
       />
-      <div className="absolute inset-0 bg-[#E8F5FF]/80" />
+      <div className="absolute inset-0 bg-[#F1F7FE]/90" />
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 md:px-8">
         {/* Heading */}
         <motion.h2
-          className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#1A3C5A] text-center mb-12 font-poppins"
+          className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1A3C5A] text-center mb-10 font-poppins tracking-tight"
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
+          animate={isVisible ? "visible" : "hidden"}
           variants={headingVariants}
         >
           Our Expert Physiotherapy Services
         </motion.h2>
 
         {/* Service Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+        <motion.div
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
+          initial="hidden"
+          animate={isVisible ? "visible" : "hidden"}
+          variants={cardVariants}
+        >
           {services.map((service, index) => (
             <motion.div
               key={service.title}
-              className="relative bg-[#FFFFFF] rounded-lg shadow-lg h-64 border-2 border-transparent"
+              className="relative bg-white rounded-xl shadow-md h-60 border-2 border-transparent overflow-hidden"
               variants={cardVariants}
               whileHover="hover"
               onHoverStart={() => setHoveredCard(index)}
@@ -108,51 +144,50 @@ export default function ServicesOverview() {
               role="button"
               aria-label={`Learn more about ${service.title}`}
             >
-              {/* Front Content (Title & Icon) */}
+              {/* Front Content */}
               <motion.div
-                className="absolute inset-0 flex flex-col items-center justify-center p-6"
+                className="absolute inset-0 flex flex-col items-center justify-center p-5"
                 animate={hoveredCard === index ? "hidden" : "visible"}
                 variants={frontVariants}
               >
-                <div className="mb-4">
-                  {typeof service.icon === "string" ? (
-                    <Image
-                      src={service.icon}
-                      alt={`${service.title} Icon`}
-                      width={60}
-                      height={60}
-                      className="object-contain"
-                    />
-                  ) : (
-                    service.icon
-                  )}
+                <div className="mb-3">
+                  <Image
+                    src={service.icon}
+                    alt={`${service.title} Icon`}
+                    width={50}
+                    height={50}
+                    sizes="(max-width: 768px) 40px, 50px"
+                    className="object-contain"
+                    loading="lazy"
+                    quality={70}
+                  />
                 </div>
-                <h3 className="text-lg font-semibold text-[#1A3C5A] font-poppins">
+                <h3 className="text-base font-semibold text-[#1A3C5A] font-poppins">
                   {service.title}
                 </h3>
               </motion.div>
 
-              {/* Back Content (Description) */}
+              {/* Back Content */}
               <motion.div
-                className="absolute inset-0 flex flex-col items-center justify-center p-6"
+                className="absolute inset-0 flex flex-col items-center justify-center p-5 bg-gradient-to-t from-[#00A3B3]/10 to-transparent"
                 animate={hoveredCard === index ? "visible" : "hidden"}
                 variants={backVariants}
               >
-                <p className="text-sm text-[#1A3C5A] text-center">
+                <p className="text-sm text-[#1A3C5A] text-center font-medium">
                   {service.description}
                 </p>
               </motion.div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* Callout & Button */}
-        <div className="text-center mt-12">
-          <p className="text-base text-[#1A3C5A] mb-6">
+        <div className="text-center mt-10">
+          <p className="text-base text-[#1A3C5A] mb-5 font-medium">
             Explore our{" "}
             <Link
               href="/services"
-              className="text-[#00A3B3] hover:underline font-medium"
+              className="text-[#00A3B3] hover:underline font-semibold"
               aria-label="Explore comprehensive physiotherapy services"
             >
               comprehensive physiotherapy solutions
@@ -160,7 +195,7 @@ export default function ServicesOverview() {
           </p>
           <Link href="/services" passHref>
             <motion.a
-              className="bg-[#1A3C5A] text-white px-6 py-3 rounded-lg font-semibold inline-block"
+              className="bg-[#1A3C5A] text-white px-5 py-2 rounded-lg font-semibold text-sm sm:text-base shadow-md"
               whileHover="hover"
               whileTap="tap"
               variants={buttonVariants}
@@ -171,18 +206,6 @@ export default function ServicesOverview() {
           </Link>
         </div>
       </div>
-
-      {/* Tailwind Animation for Waveform */}
-      <style jsx>{`
-        @keyframes wave {
-          0% {
-            background-position-x: 0;
-          }
-          100% {
-            background-position-x: 1000px;
-          }
-        }
-      `}</style>
     </section>
   );
 }
