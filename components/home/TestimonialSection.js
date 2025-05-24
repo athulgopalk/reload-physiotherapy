@@ -11,9 +11,9 @@ const testimonials = [
     location: "Ullal, Kerala",
   },
   {
-    name: "Rajan P",
+    name: "Maimoona",
     text: "I am currently receiving rehabilitation treatment for my lower back pain and knee osteoarthritis at the facility. The care and attention from the team have been very supportive, and I’m hopeful about my progress. While I’m still in treatment, I appreciate the efforts to help manage my pain and improve my mobility. Thank you for your ongoing care.",
-    location: "Maimoona, Kerala",
+    location: "Mangalore, Karnataka",
   },
   {
     name: "Anitha K",
@@ -35,7 +35,6 @@ const testimonials = [
     text: "I had been dealing with chronic back pain for years. Tried many things, but nothing really helped until I started this treatment. The pain has reduced a lot, and I feel much more active now. The care I received was consistent and honest. Can’t thank you enough.",
     location: "Mangalore, Karnataka",
   },
- 
 ];
 
 // Animation variants

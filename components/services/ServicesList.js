@@ -168,7 +168,7 @@ function ServiceImage({ src, alt }) {
     >
       <Image
         src={src}
-        alt={alt}
+        alt="Reload Physiotherapy services"
         width={288}
         height={288} // Adjusted for 1:1 aspect ratio
         className="w-full h-full object-cover hover:scale-110 transition-all "

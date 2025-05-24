@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin ,Calendar } from "lucide-react";
+import Link from "next/link";
 
 // Contact data
 const contacts = [
@@ -12,15 +13,16 @@ const contacts = [
   },
   {
     label: "Call Us",
-    detail: "+91-XXXX-XXXX",
-    href: "tel:+91-XXXX-XXXX",
+    detail: "+91 9633045363",
+    href: "tel:+919633045363",
     icon: <Phone className="w-8 h-8 sm:w-10 sm:h-10 text-[#00A3B3]" />,
   },
+
   {
-    label: "Visit Us",
-    detail: "Mangaluru, Karnataka",
-    href: "#", // Placeholder, update with Google Maps link if available
-    icon: <MapPin className="w-8 h-8 sm:w-10 sm:h-10 text-[#00A3B3]" />,
+    label: "Book Online",
+    detail: "Schedule Your Virtual Consultation",
+    href: "/contact#booking",
+    icon: <Calendar className="w-8 h-8 sm:w-10 sm:h-10 text-[#00A3B3]" />,
   },
 ];
 
@@ -33,7 +35,7 @@ const cardVariants = {
   },
   hover: {
     scale: 1.03,
-    boxShadow: "0 8px 24px rgba(0, 163, 179, 0.4)",
+    // boxShadow: "0 8px 24px rgba(0, 163, 179, 0.4)",
     transition: { duration: 0.8, ease: "easeOut" },
   },
 };
@@ -73,7 +75,7 @@ const auraVariants = {
 export default function ContactDetails() {
   return (
     <section
-      className="relative bg-[#F7F7F7] py-16 sm:py-20 md:py-24 overflow-hidden"
+      className="relative py-16 sm:py-20 md:py-24 overflow-hidden"
       role="region"
       aria-label="Contact Details"
       id="details"
@@ -136,13 +138,13 @@ export default function ContactDetails() {
                   initial="rest"
                   animate="rest"
                 >
-                  <a
+                  <Link
                     href={contact.href}
                     className="text-base sm:text-lg text-[#1A3C5A] font-medium hover:text-[#00A3B3] transition-colors duration-500"
                     aria-label={contact.label}
                   >
                     {contact.detail}
-                  </a>
+                  </Link>
                 </motion.div>
               </div>
             </motion.div>

@@ -36,7 +36,7 @@ export const metadata = {
   openGraph: {
     title: "Reload Physiotherapy - Premium Physiotherapy Services in India",
     description:
-      "Discover expert physiotherapy at Reload Physiotherapy, designed for pain relief and recovery in India.",
+      "Relaod Physiotherapy ,Your Destination for Advanced - Patient-Centered Physiotherapy.",
     url: "https://reloadphysio.in",
     siteName: "Reload Physiotherapy",
     type: "website",

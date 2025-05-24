@@ -96,7 +96,7 @@ export default function ServicesOverview() {
   return (
     <section
       ref={sectionRef}
-      className="relative bg-gradient-to-br from-[#F1F7FE] to-[#D9EFFF] py-12 overflow-hidden"
+      className="relative bg-gradient-to-br  py-12 overflow-hidden"
       role="region"
       aria-label="Services Overview for Reload Physiotherapy"
     >
@@ -105,12 +105,12 @@ export default function ServicesOverview() {
         className="absolute inset-0 bg-[url('/waveform-bg.svg')] bg-cover bg-center opacity-15"
         style={{ willChange: "transform" }}
       />
-      <div className="absolute inset-0 bg-[#F1F7FE]/90" />
+      {/* <div className="absolute inset-0 bg-[#F1F7FE]/90" /> */}
 
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 md:px-8">
         {/* Heading */}
         <motion.h2
-          className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1A3C5A] text-center mb-10 font-poppins tracking-tight"
+          className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#ffffff] text-center mb-10 font-poppins tracking-tight"
           initial="hidden"
           animate={isVisible ? "visible" : "hidden"}
           variants={headingVariants}
@@ -183,19 +183,19 @@ export default function ServicesOverview() {
 
         {/* Callout & Button */}
         <div className="text-center mt-10">
-          <p className="text-base text-[#1A3C5A] mb-5 font-medium">
-            Explore our{" "}
+          <p className="text-base text-white mb-5 font-medium mr-2">
+            Explore our
             <Link
               href="/services"
-              className="text-[#00A3B3] hover:underline font-semibold"
+              className="text-[#00A3B3] hover:underline font-semibold ml-1"
               aria-label="Explore comprehensive physiotherapy services"
             >
               comprehensive physiotherapy solutions
             </Link>
           </p>
-          <Link href="/services" passHref>
+          <Link href="/services" passHref className="h-8">
             <motion.a
-              className="bg-[#1A3C5A] text-white px-5 py-2 rounded-lg font-semibold text-sm sm:text-base shadow-md"
+              className="bg-[#1A3C5A] text-white px-5 py-4 rounded-lg font-semibold text-sm sm:text-base shadow-md h-8"
               whileHover="hover"
               whileTap="tap"
               variants={buttonVariants}

@@ -1,3 +1,4 @@
+
 "use client";
 import { motion } from "framer-motion";
 import Link from "next/link";
@@ -6,9 +7,9 @@ import { useState, useEffect, useRef } from "react";
 
 // Placeholder carousel images
 const carouselImages = [
-  { src: "/Slide1.webp", alt: "Physiotherapy Waveform 1" },
-  { src: "/Slide2.webp", alt: "Physiotherapy Waveform 2" },
-  { src: "/Slide3.webp", alt: "Physiotherapy Waveform 3" },
+  { src: "/Slide1.jpg", alt: "Physiotherapy Waveform 1" },
+  { src: "/Slide2.jpg", alt: "Physiotherapy Waveform 2" },
+  { src: "/Slide3.jpg", alt: "Physiotherapy Waveform 3" },
 ];
 
 // Animation variants
@@ -177,28 +178,28 @@ export default function Hero() {
 
       {/* Content */}
       <motion.div
-        className="relative z-10 text-center px-4 sm:px-6 md:px-8 max-w-3xl mx-auto"
+        className="relative z-10 text-center px-4 sm:px-6 md:px-8 max-w-4xl mx-auto"
         initial="hidden"
         animate={isVisible ? "visible" : "hidden"}
         variants={textVariants}
       >
         <motion.h1
-          className="text-4xl sm:text-5xl md:text-6xl font-bold text-[#1A3C5A] mb-4 font-poppins"
-          style={{ textShadow: "0 0 5px rgba(0, 163, 179, 0.3)" }}
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#eaeef1] mb-4 font-poppins"
+          
           variants={textVariants}
         >
           Empowering Movement, Restoring Strength
         </motion.h1>
         <motion.p
-          className="text-lg sm:text-xl md:text-2xl text-[#1A3C5A] mb-8"
+          className="text-base sm:text-lg md:text-xl lg:text-2xl text-[#eaeef1] mb-6 sm:mb-8"
           variants={subtextVariants}
         >
           Bringing expert physiotherapy care right to your doorstep.
         </motion.p>
-        <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+        <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-3 md:space-x-4 lg:space-x-6">
           <Link href="/services" passHref>
             <motion.a
-              className="bg-[#1A3C5A] text-white px-6 py-3 rounded-lg font-semibold"
+              className="w-full sm:w-auto bg-[#1A3C5A] text-white px-4 sm:px-5 md:px-6 py-2.5 sm:py-3 rounded-lg font-semibold text-sm sm:text-base md:text-lg transition-colors duration-300"
               whileHover="hover"
               whileTap="tap"
               variants={buttonVariants}
@@ -207,9 +208,9 @@ export default function Hero() {
               Explore Services
             </motion.a>
           </Link>
-          <Link href="/contact" passHref>
+          <Link href="/contact" passHref className="mt-2 md:mt-0">
             <motion.a
-              className="bg-[#00A3B3] text-white px-6 py-3 rounded-lg font-semibold"
+              className="w-full sm:w-auto bg-[#00A3B3] text-white px-4 sm:px-5 md:px-6 py-2.5 sm:py-3 rounded-lg font-semibold text-sm sm:text-base md:text-lg transition-colors duration-300"
               whileHover="hover"
               whileTap="tap"
               animate="pulse"
@@ -235,6 +236,38 @@ export default function Hero() {
           ))}
         </div>
       </motion.div>
+
+      <style jsx>{`
+        /* Ensure buttons have minimum touch target size for mobile */
+        a {
+          min-height: 44px; /* Minimum touch target size for accessibility */
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        /* Additional responsive tweaks */
+        @media (max-width: 639px) {
+          a {
+            width: 100%;
+            max-width: 280px; /* Prevent buttons from being too wide */
+            margin-left: auto;
+            margin-right: auto;
+          }
+        }
+
+        @media (min-width: 640px) and (max-width: 1023px) {
+          a {
+            min-width: 140px; /* Ensure buttons don't shrink too much */
+          }
+        }
+
+        @media (min-width: 1024px) {
+          a {
+            min-width: 160px; /* Slightly larger buttons for desktop */
+          }
+        }
+      `}</style>
     </section>
   );
 }

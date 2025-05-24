@@ -84,16 +84,16 @@ export default function Footer() {
               <Image
                 src="/logo.webp"
                 alt="Reload Physiotherapy Logo"
-                width={84}
-                height={84}
+                width={122}
+                height={122}
                 className="object-contain rounded-full"
                 aria-label="Reload Physiotherapy Logo"
               />
             </motion.div>
             <p className="text-sm font-poppins mb-2">
-              Empowering Movement, Restoring Strength
+              Your Destination for Advanced,
             </p>
-            <p className="text-sm">Delivering world-class physiotherapy</p>
+            <p className="text-sm">Patient-Centered Physiotherapy.</p>
           </motion.div>
 
           {/* Quick Links */}
@@ -150,16 +150,23 @@ export default function Footer() {
             </p>
             <p className="text-xs md:text-base mb-2">
               <motion.a
-                href="tel:+91-XXXX-XXXX"
+                href="tel:+919633045363"
                 whileHover={{ color: "#00A3B3" }}
                 transition={{ duration: 1.5, ease: "easeOut" }}
                 aria-label="Call Reload Physiotherapy"
               >
-                +91-XXXX-XXXX
+                +91 9633045363
               </motion.a>
             </p>
-            <p className="text-xs md:text-base">
-              Ambikanagar, Gandhi Nagar, Kavoor, Mangaluru, Karnataka 575015
+            <p className="text-xs md:text-base mb-2">
+              <motion.a
+                href="tel:+917034354742"
+                whileHover={{ color: "#00A3B3" }}
+                transition={{ duration: 1.5, ease: "easeOut" }}
+                aria-label="Call Reload Physiotherapy"
+              >
+                +91 7034354742
+              </motion.a>
             </p>
           </motion.div>
         </div>

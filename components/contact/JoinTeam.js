@@ -64,7 +64,7 @@ const particleVariants = {
 export default function JoinTeam() {
   return (
     <section
-      className="relative bg-[#E8F5FF] py-16 sm:py-20 md:py-24 overflow-hidden "
+      className="relative  py-16 sm:py-20 md:py-24 overflow-hidden "
       role="complementary"
       aria-label="Join Our Team"
       id="career"
@@ -121,7 +121,7 @@ export default function JoinTeam() {
 
         {/* Subtext */}
         <motion.p
-          className="text-base sm:text-lg md:text-xl text-[#1A3C5A]/80 mb-8 max-w-2xl mx-auto"
+          className="text-base sm:text-lg md:text-xl text-[#1A3C5A]/100 mb-8 max-w-2xl mx-auto"
           variants={subtextVariants}
           initial="hidden"
           whileInView="visible"
