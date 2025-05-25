@@ -1,8 +1,8 @@
-import { send } from "emailjs-com";
+import emailjs from "@emailjs/browser";
 
 export const sendEmail = async (formData) => {
   try {
-    const response = await send(
+    const response = await emailjs.send(
       process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
       process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
       formData,

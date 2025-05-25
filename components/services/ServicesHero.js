@@ -93,10 +93,10 @@ export default function ServicesHero() {
         </motion.p>
 
         {/* CTAs */}
-        <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6">
+        <div className=" justify-center gap-4 sm:gap-6">
           <motion.a
             href="/services#serviceslist"
-            className="bg-[#00A3B3] text-white px-6 py-3 rounded-lg font-semibold border-2 border-[#00A3B3] hover:bg-[#1A3C5A] hover:border-[#1A3C5A] transition-colors duration-300"
+            className="bg-[#00A3B3] text-white px-6 py-3 rounded-lg font-semibold border-2 border-[#00A3B3] hover:bg-[#1A3C5A] hover:border-[#1A3C5A] transition-colors duration-300 w-[200px] md:w-[250px] text-center"
             whileHover="hover"
             whileTap="tap"
             variants={buttonVariants}
@@ -104,16 +104,7 @@ export default function ServicesHero() {
           >
             Explore Services
           </motion.a>
-          {/* <motion.NextLink
-            href="/services#details"
-            className="bg-transparent text-[#1A3C5A] px-6 py-3 rounded-lg font-semibold border-2 border-[#1A3C5A] hover:bg-[#1A3C5A] hover:text-white transition-colors duration-300 sm:mt-0 mt-4"
-            whileHover="hover"
-            whileTap="tap"
-            variants={buttonVariants}
-            aria-label="Learn More"
-          >
-            Learn More
-          </motion.NextLink> */}
+          
         </div>
       </div>
 

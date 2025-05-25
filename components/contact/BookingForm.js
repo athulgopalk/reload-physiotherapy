@@ -1,7 +1,8 @@
 "use client";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import emailjs from "@emailjs/browser";
+import { sendEmail } from "../../libs/emailjs"; // Adjust path based on your folder structure
 
 // Animation variants
 const fieldVariants = {
@@ -45,6 +46,11 @@ export default function BookingForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
+  // Initialize EmailJS with public key
+  useEffect(() => {
+    emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY);
+  }, []);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -74,12 +80,7 @@ export default function BookingForm() {
 
     setIsSubmitting(true);
     try {
-      await emailjs.send(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
-        formData,
-        { publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY }
-      );
+      await sendEmail(formData); // Use sendEmail from libs/emailjs.js
       setShowModal(true);
       setFormData({
         name: "",
