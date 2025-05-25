@@ -1,15 +1,29 @@
 
+
+
 "use client";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 
-// Placeholder carousel images
+// Placeholder carousel images with desktop and mobile sources
 const carouselImages = [
-  { src: "/Slide1.jpg", alt: "Physiotherapy Waveform 1" },
-  { src: "/Slide2.jpg", alt: "Physiotherapy Waveform 2" },
-  { src: "/Slide3.jpg", alt: "Physiotherapy Waveform 3" },
+  {
+    desktopSrc: "/Slide1.jpg",
+    mobileSrc: "/hero1-mobile.webp",
+    alt: "Physiotherapy Waveform 1",
+  },
+  {
+    desktopSrc: "/Slide2.jpg",
+    mobileSrc: "/hero2-mobile.webp",
+    alt: "Physiotherapy Waveform 2",
+  },
+  {
+    desktopSrc: "/Slide3.jpg",
+    mobileSrc: "/hero3-mobile.webp",
+    alt: "Physiotherapy Waveform 3",
+  },
 ];
 
 // Animation variants
@@ -56,18 +70,45 @@ const bubbleVariants = {
 
 export default function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [imageError, setImageError] = useState({});
+  const [mounted, setMounted] = useState(false);
   const sectionRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
 
-  // Preload first image
+  // Set mounted state to true after component mounts on client
   useEffect(() => {
-    const link = document.createElement("link");
-    link.rel = "preload";
-    link.as = "image";
-    link.href = carouselImages[0].src;
-    document.head.appendChild(link);
-    return () => document.head.removeChild(link);
+    setMounted(true);
   }, []);
+
+  // Preload first desktop and mobile images
+  useEffect(() => {
+    const desktopLink = document.createElement("link");
+    desktopLink.rel = "preload";
+    desktopLink.as = "image";
+    desktopLink.href = carouselImages[0].desktopSrc;
+    desktopLink.media = "(min-width: 769px)";
+    document.head.appendChild(desktopLink);
+
+    const mobileLink = document.createElement("link");
+    mobileLink.rel = "preload";
+    mobileLink.as = "image";
+    mobileLink.href = carouselImages[0].mobileSrc;
+    mobileLink.media = "(max-width: 768px)";
+    document.head.appendChild(mobileLink);
+
+    return () => {
+      document.head.removeChild(desktopLink);
+      document.head.removeChild(mobileLink);
+    };
+  }, []);
+
+  // Handle image loading errors
+  const handleImageError = (index, type) => {
+    setImageError((prev) => ({ ...prev, [index]: type }));
+    console.warn(
+      `Failed to load ${type} image: ${carouselImages[index][`${type}Src`]}`
+    );
+  };
 
   // Lazy load carousel and trigger animations on visibility
   useEffect(() => {
@@ -112,6 +153,91 @@ export default function Hero() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Prevent rendering carousel until mounted to avoid SSR issues
+  if (!mounted) {
+    return (
+      <section
+        ref={sectionRef}
+        className="relative w-full min-h-[100vh] flex items-center justify-center overflow-hidden bg-gradient-to-b from-[#F1F7FE] to-[#D9EFFF]"
+        role="region"
+        aria-label="Hero Section for Reload Physiotherapy"
+      >
+        {/* Render only the non-image content during SSR */}
+        <motion.div
+          className="relative z-10 text-center px-4 sm:px-6 md:px-8 max-w-4xl mx-auto"
+          initial="hidden"
+          animate={isVisible ? "visible" : "hidden"}
+          variants={textVariants}
+        >
+          <motion.h1
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#eaeef1] mb-4 font-poppins"
+            variants={textVariants}
+          >
+            Empowering Movement, Restoring Strength
+          </motion.h1>
+          <motion.p
+            className="text-base sm:text-lg md:text-xl lg:text-2xl text-[#eaeef1] mb-6 sm:mb-8"
+            variants={subtextVariants}
+          >
+            Bringing expert physiotherapy care right to your doorstep.
+          </motion.p>
+          <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-3 md:space-x-4 lg:space-x-6">
+            <Link href="/services" passHref>
+              <motion.a
+                className="w-full sm:w-auto bg-[#1A3C5A] text-white px-4 sm:px-5 md:px-6 py-2.5 sm:py-3 rounded-lg font-semibold text-sm sm:text-base md:text-lg transition-colors duration-300"
+                whileHover="hover"
+                whileTap="tap"
+                variants={buttonVariants}
+                aria-label="Explore Physiotherapy Services"
+              >
+                Explore Services
+              </motion.a>
+            </Link>
+            <Link href="/contact" passHref className="mt-2 md:mt-0">
+              <motion.a
+                className="w-full sm:w-auto bg-[#00A3B3] text-white px-4 sm:px-5 md:px-6 py-2.5 sm:py-3 rounded-lg font-semibold text-sm sm:text-base md:text-lg transition-colors duration-300"
+                whileHover="hover"
+                whileTap="tap"
+                animate="pulse"
+                variants={buttonVariants}
+                aria-label="Book Physiotherapy Appointment"
+              >
+                Book Now
+              </motion.a>
+            </Link>
+          </div>
+        </motion.div>
+
+        <style jsx>{`
+          a {
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+          @media (max-width: 639px) {
+            a {
+              width: 100%;
+              max-width: 280px;
+              margin-left: auto;
+              margin-right: auto;
+            }
+          }
+          @media (min-width: 640px) and (max-width: 1023px) {
+            a {
+              min-width: 140px;
+            }
+          }
+          @media (min-width: 1024px) {
+            a {
+              min-width: 160px;
+            }
+          }
+        `}</style>
+      </section>
+    );
+  }
+
   return (
     <section
       ref={sectionRef}
@@ -123,21 +249,39 @@ export default function Hero() {
       <div className="absolute inset-0">
         {carouselImages.map((image, index) => (
           <motion.div
-            key={image.src}
+            key={index}
             className="absolute inset-0"
             initial="hidden"
             animate={index === currentSlide ? "visible" : "hidden"}
             variants={carouselVariants}
+            aria-hidden={index !== currentSlide}
           >
             <Image
-              src={image.src}
+              src={
+                imageError[index] === "both"
+                  ? "/fallback.jpg"
+                  : imageError[index] === "desktop"
+                  ? image.mobileSrc
+                  : imageError[index] === "mobile"
+                  ? image.desktopSrc
+                  : window.innerWidth <= 768
+                  ? image.mobileSrc
+                  : image.desktopSrc
+              }
+              srcSet={`${image.mobileSrc} 768w, ${image.desktopSrc} 1200w`}
+              sizes="(max-width: 768px) 100vw, (min-width: 769px) 100vw"
               alt={image.alt}
               fill
-              sizes="100vw"
               style={{ objectFit: "cover" }}
               loading={index === 0 ? "eager" : "lazy"}
               priority={index === 0}
               quality={75}
+              onError={() =>
+                handleImageError(
+                  index,
+                  window.innerWidth <= 768 ? "mobile" : "desktop"
+                )
+              }
             />
           </motion.div>
         ))}
@@ -185,7 +329,6 @@ export default function Hero() {
       >
         <motion.h1
           className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#eaeef1] mb-4 font-poppins"
-          
           variants={textVariants}
         >
           Empowering Movement, Restoring Strength
@@ -238,33 +381,28 @@ export default function Hero() {
       </motion.div>
 
       <style jsx>{`
-        /* Ensure buttons have minimum touch target size for mobile */
         a {
-          min-height: 44px; /* Minimum touch target size for accessibility */
+          min-height: 44px;
           display: flex;
           align-items: center;
           justify-content: center;
         }
-
-        /* Additional responsive tweaks */
         @media (max-width: 639px) {
           a {
             width: 100%;
-            max-width: 280px; /* Prevent buttons from being too wide */
+            max-width: 280px;
             margin-left: auto;
             margin-right: auto;
           }
         }
-
         @media (min-width: 640px) and (max-width: 1023px) {
           a {
-            min-width: 140px; /* Ensure buttons don't shrink too much */
+            min-width: 140px;
           }
         }
-
         @media (min-width: 1024px) {
           a {
-            min-width: 160px; /* Slightly larger buttons for desktop */
+            min-width: 160px;
           }
         }
       `}</style>

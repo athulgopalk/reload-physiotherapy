@@ -1,83 +1,92 @@
-// components/services/ServicesList.js
 "use client";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import {
+  Activity,
+  Dumbbell,
+  HeartPulse,
+  Hand,
+  Syringe,
+  User,
+  Brain,
+  Baby,
+  Laptop,
+  AlignCenter,
+} from "lucide-react";
 
 // Services data
 const services = [
   {
     id: "pain-management",
     title: "Pain Management",
-    icon: "SpineIcon",
+    icon: Activity,
     description: "Relieve back, neck, and joint pain with targeted therapies.",
     image: "/services/pain-management.webp",
   },
   {
     id: "sports-injury",
     title: "Sports Injury Rehabilitation",
-    icon: "RunningIcon",
+    icon: Dumbbell,
     description: "Recover from acute and chronic sports injuries.",
     image: "/services/sports-injury.webp",
   },
   {
     id: "post-surgical",
     title: "Post-Surgical Rehabilitation",
-    icon: "KneeIcon",
+    icon: HeartPulse,
     description: "Restore mobility after orthopedic surgeries.",
     image: "/services/post-surgical.webp",
   },
   {
     id: "manual-therapy",
     title: "Manual Therapy",
-    icon: "HandsIcon",
+    icon: Hand,
     description: "Joint mobilizations and soft tissue release.",
     image: "/services/manual-therapy.webp",
   },
   {
     id: "dry-needling",
     title: "Dry Needling & Cupping",
-    icon: "NeedleIcon",
+    icon: Syringe,
     description: "Target muscle trigger points for pain relief.",
     image: "/services/dry-needling.webp",
   },
   {
     id: "posture-correction",
     title: "Posture & Ergonomic Training",
-    icon: "PostureIcon",
+    icon: AlignCenter,
     description: "Improve posture and optimize workstation setup.",
     image: "/services/posture-correction.webp",
   },
   {
     id: "neuro-physio",
     title: "Neuro Physiotherapy",
-    icon: "BrainIcon",
+    icon: Brain,
     description: "Rehabilitation for stroke, Parkinson’s, and spinal injuries.",
     image: "/services/neuro-physio.webp",
   },
   {
     id: "pediatric-geriatric",
     title: "Pediatric & Geriatric Care",
-    icon: "ChildElderlyIcon",
+    icon: Baby,
     description: "Support for developmental delays and fall prevention.",
     image: "/services/pediatric-geriatric.webp",
   },
   {
     id: "fitness-preventive",
     title: "Fitness & Preventive Programs",
-    icon: "DumbbellIcon",
+    icon: Dumbbell,
     description: "Custom fitness routines and injury prevention plans.",
     image: "/services/fitness-preventive.webp",
   },
   {
     id: "tele-physio",
     title: "Tele-Physiotherapy",
-    icon: "LaptopIcon",
+    icon: Laptop,
     description: "Virtual consultations for convenient care.",
     image: "/services/tele-physio.webp",
   },
 ];
-
-
 
 // Animation variants
 const cardVariants = {
@@ -163,15 +172,15 @@ function ServiceImage({ src, alt }) {
       className="relative w-full h-[85%] overflow-hidden rounded-t-xl"
       initial="initial"
       animate="visible"
-      // whileHover="hover"
+      whileHover="hover"
       variants={imageVariants}
     >
       <Image
         src={src}
-        alt="Reload Physiotherapy services"
+        alt={alt}
         width={288}
-        height={288} // Adjusted for 1:1 aspect ratio
-        className="w-full h-full object-cover hover:scale-110 transition-all "
+        height={288}
+        className="w-full h-full object-cover hover:scale-110 transition-all"
         loading="lazy"
         sizes="(max-width: 768px) 100vw, 288px"
       />
@@ -181,6 +190,7 @@ function ServiceImage({ src, alt }) {
 
 // ServiceDetails Component
 function ServiceDetails({ service }) {
+  const IconComponent = service.icon; // Use the icon component from services array
   return (
     <motion.div
       className="p-2 flex items-center h-[20%] w-full"
@@ -194,20 +204,13 @@ function ServiceDetails({ service }) {
         whileHover="hover"
         className="flex items-center justify-center w-8 h-8 bg-[#00A3B3]/10 rounded-full mr-3"
       >
-        <Image
-          src={service.customImage || "/placeholder-icon.png"} // Add your custom image path in the services array
-          // alt={`${service.title} icon`}
-          width={20}
-          height={20}
-        />
+        <IconComponent size={20} color="#1A3C5A" aria-hidden="true" />
       </motion.div>
-      <div className="">
+      <div>
         <h3 className="text-sm font-semibold text-[#1A3C5A] font-poppins">
           {service.title}
         </h3>
-        <p className="text-xs text-[#1A3C5A]/80">
-          {service.description}
-        </p>
+        <p className="text-xs text-[#1A3C5A]/80">{service.description}</p>
       </div>
     </motion.div>
   );
@@ -249,6 +252,7 @@ export default function ServicesList() {
       className="relative bg-[#F7F7F7] py-12 md:py-16 overflow-hidden"
       role="region"
       aria-label="Physiotherapy Services"
+      id="serviceslist"
     >
       {/* Vitality Web */}
       <motion.div

@@ -2,7 +2,8 @@
 "use client";
 import { motion, useCycle } from "framer-motion";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
+import { usePathname } from "next/navigation";
 
 // Nav links
 const navLinks = [
@@ -52,40 +53,38 @@ const headerVariants = {
 export default function Header() {
   const [isOpen, toggleOpen] = useCycle(false, true);
   const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname();
+  const isHomePage = pathname === "/";
 
-  // Debounced scroll handler for performance
+  // Optimized scroll handler
+  const handleScroll = useCallback(() => {
+    setIsScrolled(window.scrollY > 5);
+  }, []);
+
   useEffect(() => {
-    let timeoutId;
-    const handleScroll = () => {
-      clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => {
-        setIsScrolled(window.scrollY > 5); // Reduced threshold for quicker trigger
-      }, 20); // Reduced debounce delay for faster response
-    };
-    window.addEventListener("scroll", handleScroll);
+    if (!isHomePage) {
+      setIsScrolled(true); // Non-home pages: header with gradient background
+      return;
+    }
+
+    // Homepage: header with transparent background initially
+    setIsScrolled(false);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      clearTimeout(timeoutId);
     };
-  }, []);
+  }, [isHomePage, handleScroll]);
 
   return (
     <motion.header
       className={`fixed top-0 left-0 w-full z-50 transition-shadow duration-150 ${
-        isScrolled
+        isScrolled || !isHomePage
           ? "bg-gradient-to-r from-[#00A3B3] to-[#1A3C5A] shadow-lg"
           : "bg-transparent"
       }`}
-      variants={{
-        hidden: { y: -50, opacity: 0 },
-        visible: {
-          y: 0,
-          opacity: 1,
-          transition: { duration: 0.1, ease: "easeInOut" },
-        },
-      }}
-      initial="hidden"
-      animate="visible"
+      variants={headerVariants}
+      initial="visible" // Always visible initially
+      animate="visible" // Keep visible, only background changes
       role="banner"
       style={{ margin: 0, boxSizing: "border-box" }}
     >

@@ -6,14 +6,7 @@ import {
   AnimatePresence,
 } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
-import Image from "next/image";
 import { useInView } from "react-intersection-observer";
-
-// Optimized carousel images with WebP format
-const carouselImages = [
-  { src: "/About-Hero.jpg", alt: "Healing Wave 1" },
- 
-];
 
 // Animation variants
 const headingVariants = {
@@ -29,43 +22,15 @@ const subtextVariants = {
   },
 };
 
-const carouselVariants = {
-  hidden: { opacity: 0, scale: 1.1 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: { duration: 0.8, ease: "easeOut" },
-  },
-  exit: {
-    opacity: 0,
-    scale: 0.9,
-    transition: { duration: 0.4, ease: "easeIn" },
-  },
-};
-
 export default function AboutHero() {
-  const [currentSlide, setCurrentSlide] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
   const { ref, inView } = useInView({ triggerOnce: false, threshold: 0.1 });
   const scrollY = useMotionValue(0);
-  const backgroundPositionY = useTransform(scrollY, [0, 200], [0, 30]);
   const sectionRef = useRef(null);
 
-  // Preload images
+  // Set loaded state
   useEffect(() => {
-    carouselImages.forEach((image) => {
-      const img = new window.Image();
-      img.src = image.src;
-    });
     setIsLoaded(true);
-  }, []);
-
-  // Auto-cycle carousel
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % carouselImages.length);
-    }, 5000);
-    return () => clearInterval(interval);
   }, []);
 
   // Scroll handler for parallax
@@ -87,53 +52,18 @@ export default function AboutHero() {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full h-screen flex items-center justify-center  overflow-hidden"
+      className="relative w-full h-screen flex items-center justify-center overflow-hidden"
+      style={{ backgroundColor: "#E8F5FF" }}
       role="region"
       aria-label="About Us Hero Section"
       tabIndex={-1}
     >
-      {/* Parallax Background with Carousel */}
-      <div className="absolute inset-0">
-        <AnimatePresence initial={false}>
-          {carouselImages.map(
-            (image, index) =>
-              index === currentSlide && (
-                <motion.div
-                  key={image.src}
-                  className="absolute inset-0"
-                  initial="hidden"
-                  animate="visible"
-                  exit="exit"
-                  variants={carouselVariants}
-                >
-                  <Image
-                    src={image.src}
-                    alt={image.alt}
-                    fill
-                    sizes="100vw"
-                    style={{ objectFit: "cover" }}
-                    priority={index === 0}
-                    quality={85}
-                  />
-                </motion.div>
-              )
-          )}
-        </AnimatePresence>
-        {/* Animated Gradient Background Effect */}
-        <motion.div
-          className="absolute inset-0 bg-gradient-to-b   animate-wave"
-          style={{ backgroundPositionY }}
-          aria-hidden="true"
-        />
-        <div className="absolute inset-0 " aria-hidden="true" />
-      </div>
-
       {/* Optimized Particle Effect */}
       <div className="absolute inset-0 pointer-events-none">
         {[...Array(8)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute  rounded-full opacity-20"
+            className="absolute bg-[#1A3C5A] rounded-full opacity-20"
             style={{
               width: `${Math.random() * 2 + 1}px`,
               height: `${Math.random() * 2 + 1}px`,
@@ -175,7 +105,7 @@ export default function AboutHero() {
           className="text-lg sm:text-xl md:text-2xl text-[#1A3C5A] font-medium"
           variants={subtextVariants}
         >
-          Your Journey to Better Movement Starts Here.
+          Your Journey to Better Movement Starts Here.
         </motion.p>
       </motion.div>
 
@@ -202,11 +132,6 @@ export default function AboutHero() {
                 addressCountry: "IN",
               },
             },
-            image: carouselImages.map((img) => ({
-              "@type": "ImageObject",
-              url: `https://www.reloadphysiotherapy.in${img.src}`,
-              caption: img.alt,
-            })),
           }),
         }}
       />

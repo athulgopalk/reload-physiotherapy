@@ -9,21 +9,21 @@ const stories = [
   {
     quote:
       "I thought chronic back pain was my life. In 4 months, Reload helped me dance at my daughter’s wedding!",
-    image: "/stories/dancing-silhouette.jpg",
+    image: "/dance.webp",
     alt: "Silhouette of a person dancing",
     progress: "Pain-Free Living",
   },
   {
     quote:
       "A shoulder injury benched me. Reload got me back on the pitch, bowling stronger than ever!",
-    image: "/stories/cricket-ball.jpg",
+    image: "/Cricketball.webp",
     alt: "Illustration of a cricket ball",
     progress: "Back to Cricket",
   },
   {
     quote:
       "At 78, I struggled to walk. Reload’s care gave me the confidence to stroll with my grandkids!",
-    image: "/stories/walking-stick.jpg",
+    image: "/Walkingstick.webp",
     alt: "Illustration of a walking stick",
     progress: "Restored Mobility",
   },

@@ -19,24 +19,24 @@
     font-family: 'Poppins', sans-serif;
     font-weight: 400; 
     
-    /* background-color: #E8F5FF;  */
+    background-color: #E8F5FF; 
   }
 
   /* Desktop Parallax */
-@media (min-width: 769px) {
+/* @media (min-width: 769px) {
   body {
     background: url('/body-bg.png') no-repeat center center fixed;
     background-size: cover;
   }
-}
+} */
 
 /* Mobile Parallax */
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   body {
     background: url('/logo.jpg') no-repeat center center fixed;
     background-size: cover;
   }
-}
+} */
 
 /* about hero */
 

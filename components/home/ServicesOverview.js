@@ -38,7 +38,7 @@ const cardVariants = {
   },
   hover: {
     borderColor: "#00A3B3",
-    boxShadow: "0 8px 16px rgba(0, 163, 179, 0.3)",
+    // boxShadow: "0 8px 16px rgba(0, 163, 179, 0.3)",
     transition: { duration: 0.3, ease: "easeOut" },
   },
 };
@@ -57,7 +57,7 @@ const buttonVariants = {
   hover: {
     scale: 1.05,
     backgroundColor: "#134467",
-    boxShadow: "0 4px 12px rgba(0, 163, 179, 0.5)",
+    // boxShadow: "0 4px 12px rgba(0, 163, 179, 0.5)",
     transition: { duration: 0.2, ease: "easeOut" },
   },
   tap: { scale: 0.95 },
@@ -96,7 +96,7 @@ export default function ServicesOverview() {
   return (
     <section
       ref={sectionRef}
-      className="relative bg-gradient-to-br  py-12 overflow-hidden"
+      className="relative bg-gradient-to-br  py-12 overflow-hidden bg-[#E8F5FF]"
       role="region"
       aria-label="Services Overview for Reload Physiotherapy"
     >
@@ -110,7 +110,7 @@ export default function ServicesOverview() {
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 md:px-8">
         {/* Heading */}
         <motion.h2
-          className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#ffffff] text-center mb-10 font-poppins tracking-tight"
+          className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1A3C5A] text-center mb-10 font-poppins tracking-tight"
           initial="hidden"
           animate={isVisible ? "visible" : "hidden"}
           variants={headingVariants}
@@ -183,7 +183,7 @@ export default function ServicesOverview() {
 
         {/* Callout & Button */}
         <div className="text-center mt-10">
-          <p className="text-base text-white mb-5 font-medium mr-2">
+          <p className="text-base text-[#1A3C5A] mb-5 font-medium mr-2">
             Explore our
             <Link
               href="/services"
