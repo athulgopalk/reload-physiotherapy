@@ -23,7 +23,7 @@ const teamMembers = [
     image: "/DrMohammedShakkirPT.webp",
     alt: "Dr. Mohammed Shakkir, Pediatric & Sports Physiotherapist",
     description: [
-      "BPT, CDNT, CCT, CMT",
+      "BPT, CDNT, CCT, CKTP, CMT",
       "FIFA Diploma in Football Medicine",
       "Fellowship Program in Podiatry Rehabilitation",
       "Karnataka State Football Team Physio - 2024 BC Roy Trophy",
@@ -32,7 +32,7 @@ const teamMembers = [
   {
     name: "Dr. Hubais Hameed (PT)",
     role: "Neuro & Sports Physiotherapist",
-    image: "/team/hubais.jpg",
+    image: "/Dr.Hubais Hameed.webp",
     alt: "Dr. Hubais Hameed, Neuro & Sports Physiotherapist",
     description: [
       "MPT (Neurological Sciences)",
@@ -45,7 +45,7 @@ const teamMembers = [
   {
     name: "Dr. Abhijith VV (PT)",
     role: "Musculoskeletal & Sports Physiotherapist",
-    image: "/team/abhijith.jpg",
+    image: "/Dr.Abhijithvv.webp",
     alt: "Dr. Abhijith VV, Musculoskeletal & Sports Physiotherapist",
     description: [
       "BPT, MPT (Musculoskeletal and Sports Sciences)",

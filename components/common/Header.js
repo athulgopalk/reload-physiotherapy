@@ -99,10 +99,10 @@ export default function Header() {
           aria-label="Reload Physiotherapy Logo"
         >
           <motion.img
-            src="/logo.webp"
+            src="/Reload-Logo.webp"
             alt="Reload Physiotherapy Logo"
-            width={120}
-            height={120}
+            width={126}
+            height={126}
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
             className="object-contain sm:w-[100px] sm:h-[100px] md:w-[120px] md:h-[120px]"
