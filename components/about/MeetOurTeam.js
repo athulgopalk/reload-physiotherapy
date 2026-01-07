@@ -2,7 +2,6 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 
-// Team data
 const teamMembers = [
   {
     name: "Dr. Muhammed Jazil (PT)",
@@ -23,7 +22,7 @@ const teamMembers = [
     image: "/DrMohammedShakkirPT.webp",
     alt: "Dr. Mohammed Shakkir, Pediatric & Sports Physiotherapist",
     description: [
-      "BPT, CDNT, CCT, CKTP, CMT",
+      "BPT, CDNT, CCT, CKTP, CMT",
       "FIFA Diploma in Football Medicine",
       "Fellowship Program in Podiatry Rehabilitation",
       "Karnataka State Football Team Physio - 2024 BC Roy Trophy",
@@ -32,7 +31,7 @@ const teamMembers = [
   {
     name: "Dr. Hubais Hameed (PT)",
     role: "Neuro & Sports Physiotherapist",
-    image: "/Dr.Hubais Hameed.webp",
+    image: "/Dr.HubaisHameed.webp",
     alt: "Dr. Hubais Hameed, Neuro & Sports Physiotherapist",
     description: [
       "MPT (Neurological Sciences)",
@@ -54,7 +53,6 @@ const teamMembers = [
       "FIFA Diploma in Football Medicine",
     ],
   },
-
   {
     name: "Dr. Mohamed Fayz (PT)",
     role: "Musculoskeletal & Sports Physiotherapist",
@@ -67,9 +65,19 @@ const teamMembers = [
       "FIFA Diploma in Football Medicine",
     ],
   },
+  {
+    name: "Dr. Hadhi Roshan (PT)",
+    role: "Consultant Physiotherapist",
+    image: "/DrHadhiRoshanPT.webp",
+    alt: "Dr. Hadhi Roshan, Consultant Physiotherapist",
+    description: [
+      "Certified Dry Needling Therapist",
+      "Certified Kinesio Taping Practitioner",
+      "FIFA Diploma in Football Medicine",
+    ],
+  },
 ];
 
-// Animation variants
 const headingVariants = {
   hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
@@ -80,7 +88,7 @@ const cardVariants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: "easeOut" }, // Removed delay for simultaneous appearance
+    transition: { duration: 0.6, ease: "easeOut" },
   },
   hover: {
     scale: 1.05,
@@ -96,11 +104,9 @@ export default function MeetOurTeam() {
       role="region"
       aria-label="Meet Our Team"
     >
-      {/* Subtle Background Accent */}
-      <div className="absolute inset-0 bg-[#E8F5FF]/20" />
+    
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-        {/* Heading */}
         <motion.h2
           className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#1A3C5A] text-center mb-12 font-poppins"
           initial="hidden"
@@ -111,19 +117,18 @@ export default function MeetOurTeam() {
           Meet Our Team
         </motion.h2>
 
-        {/* Team Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {teamMembers.map((member) => (
             <motion.div
               key={member.name}
-              className="relative bg-white rounded-xl shadow-md p-6 flex flex-col items-center text-center h-full"
+              className="bg-white rounded-xl shadow-md p-6 flex flex-col items-center text-center h-full"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.3 }}
               variants={cardVariants}
               whileHover="hover"
             >
-              <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full overflow-hidden mb-4">
+              <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full overflow-hidden mb-6">
                 <Image
                   src={member.image}
                   alt={member.alt}
@@ -133,15 +138,21 @@ export default function MeetOurTeam() {
                   loading="lazy"
                 />
               </div>
-              <h3 className="text-lg sm:text-xl font-semibold text-[#1A3C5A] font-poppins">
+
+              <h3 className="text-lg sm:text-xl font-semibold text-[#1A3C5A] font-poppins mb-2">
                 {member.name}
               </h3>
-              <p className="text-sm text-[#00A3B3] font-medium mb-2">
+
+              <p className="text-sm text-[#00A3B3] font-medium mb-6">
                 {member.role}
               </p>
-              <ul className="text-xs sm:text-sm text-[#1A3C5A]/80 space-y-1">
+
+              <ul className="w-full text-left text-xs sm:text-sm text-[#1A3C5A]/80 space-y-1.5">
                 {member.description.map((item, index) => (
-                  <li key={index}>{item}</li>
+                  <li key={index} className="flex items-start">
+                    <span className="text-[#00A3B3] mr-3  text-lg">•</span>
+                    <span className="mt-1">{item}</span>
+                  </li>
                 ))}
               </ul>
             </motion.div>
@@ -149,7 +160,6 @@ export default function MeetOurTeam() {
         </div>
       </div>
 
-      {/* SEO Metadata */}
       <script type="application/ld+json">
         {JSON.stringify({
           "@context": "https://schema.org",
