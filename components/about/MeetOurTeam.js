@@ -68,7 +68,7 @@ const teamMembers = [
   {
     name: "Dr. Hadhi Roshan (PT)",
     role: "Consultant Physiotherapist",
-    image: "/drhadhiroshanpt.webp",
+    image: "/drhadhi.jpg",
     alt: "Dr. Hadhi Roshan, Consultant Physiotherapist",
     description: [
       "Certified Dry Needling Therapist",
